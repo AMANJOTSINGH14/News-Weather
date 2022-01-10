@@ -3,6 +3,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
+    "noImplicitAny": false,
+    "strict": false,
+    "strictPropertyInitialization": false,
     "types": [
       "jasmine"
     ]

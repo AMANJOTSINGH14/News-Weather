@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-sm-12 ">
+    <mat-form-field class="h">
+      <mat-select  (selectionChange)="selectedValue($event)" [(value)]="selected" placeholder="Select news channel">
+        <mat-option [value]="source.id" *ngFor="let source of sources">{{
+          source.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- <button mat-button color="accent" mat-flat-button (click)="onSourceChange()">Go</button> -->
+  <div class=" h" style="margin-left: 200px;">
+    <mat-chip-list>
+      <mat-chip
+        *ngFor="let category of categories"
+        (click)="onGetCategoryData(category)"
+        >{{ category }}</mat-chip
+      >
+    </mat-chip-list>
+
+  </div>
+
+</div>
+  <div
+    class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt-10"
+    *ngFor="let article of news?.articles"
+  >
+    <mat-card>
+      <img
+        mat-card-image
+        *ngIf="article.urlToImage"
+        [src]="article.urlToImage"
+        alt=""
+      />
+      <mat-card-header>
+        <mat-card-title>{{ article.title }}.</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ article.content }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button mat-stroked-button><i class="fa fa-heart"></i>By {{article.source.name}}</button>
+        <button style="margin-left: 30px;" mat-button mat-raised-button color="warn" (click)="readMore(article.url)"><i class="fa fa-window-restore" aria-hidden="true"></i> Read More</button>
+
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
