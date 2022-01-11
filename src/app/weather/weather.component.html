@@ -23,27 +23,46 @@ Go
   </mat-card-title-group>
   <mat-card-content>
 <p>
-  {{WeatherData.current.condition.text}}
-</p>
-<p>
+  <b>
+   Weather - {{WeatherData.current.condition.text}}
 
- Local time- {{WeatherData.location.localtime}}
+  </b>
 </p>
 <p>
-  Temprature(f) {{WeatherData.current.temp_f}}*
+<b>
+  Local time- {{WeatherData.location.localtime}}
+
+</b>
 </p>
 <p>
-  Wind speed (kph)-{{WeatherData.current.wind_kph}}
+  <b>
+
+    Temprature(f) {{WeatherData.current.temp_f}}*
+  </b>
 </p>
 <p>
-  Humidity -{{WeatherData.current.humidity}}
+  <b>
+    Wind speed (kph)-{{WeatherData.current.wind_kph}}
+
+  </b>
+</p>
+<p>
+  <b>
+    Humidity -{{WeatherData.current.humidity}}
+
+  </b>
 </p>
 
-<p>
+<p><b>
+
   Max temp (f) {{WeatherData.forecast.forecastday[0].day.maxtemp_f}}*
+</b>
 </p>
 <p>
-  Min temp (f) {{WeatherData.forecast.forecastday[0].day.mintemp_f}}*
+  <b>
+
+    Min temp (f) {{WeatherData.forecast.forecastday[0].day.mintemp_f}}*
+  </b>
 </p>
   </mat-card-content>
   <mat-card-actions>
