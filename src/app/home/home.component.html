@@ -1,6 +1,6 @@
 <div class="row">
 
-  <mat-spinner *ngIf="!news" class="loader container d-flex justify-content-center"></mat-spinner>
+
  <div style="display: block; margin-right: 1000px; margin-left: 50px;">
 
    <mat-form-field class="fullInput">
@@ -15,7 +15,9 @@
   </mat-form-field>
   <button mat-button color="accent" mat-mini-fab (click)="applyFilter(se.value)">Go</button>
 </div>
-  <div
+
+<mat-spinner *ngIf="!news" style="margin-top: 200px; margin-right: 100;"></mat-spinner>
+<div
     class=" col-sm-6 col-md-4 col-lg-3 mt-10"
     *ngFor="let article of news?.articles"
   >

@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class LimitPipe implements PipeTransform {
 
   transform(str:any): any {
-    return str.substring(0, 100) + '...';
+    return str.substring(0, 200) + '...';
 }
 
 }
