@@ -41,10 +41,6 @@
   animation-direction: alternate;
 }
 
-@keyframes cloudMovement{
-  from{margin-left: -55px;}
-  to{margin-left: 65px;}
-}
-mat-card{
-  width: 700px;
+.m1{
+  width: 500px;
 }

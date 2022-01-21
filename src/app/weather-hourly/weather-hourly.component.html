@@ -1,0 +1,59 @@
+
+<mat-spinner *ngIf="isloading">
+
+</mat-spinner>
+<div *ngIf="!isloading">
+  <div class="row">
+
+    <div class="col-sm-12 col-sm-4 col-md-3 col-lg-3"
+
+    *ngFor="let weat of hourly">
+    <!-- <p>Hourly Data is here bravo!! for the date {{weather.date}}</p> -->
+    <mat-card style="margin-bottom: 3px;">
+      <mat-card-title-group>
+        <mat-card-title>{{ weat.time }}</mat-card-title>
+        <mat-card-subtitle>{{
+          weat.date
+        }}</mat-card-subtitle>
+        <img
+        mat-card-md-image
+        src="{{ weat.condition.icon }}"
+        />
+      </mat-card-title-group>
+      <mat-card-content>
+        <p>
+          <b> Weather - {{ weat.condition.text }} </b>
+        </p>
+
+
+
+
+        <p>
+          <b>
+            temp (f)
+            {{ weat.temp_f }}*
+          </b>
+        </p>
+        <p>
+          <b>
+           Humidity
+            {{ weat.humidity}}
+          </b>
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>
+          chance of rain:{{ weat.chance_of_rain }}
+        </button>
+        <button mat-button>
+          Wind Speed (kph) -{{ weat.wind_kph }}
+        </button>
+
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+
+</div>
+
+</div>

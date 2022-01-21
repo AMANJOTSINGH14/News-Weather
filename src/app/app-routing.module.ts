@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HeadlinesComponent } from './headlines/headlines.component';
 import { HomeComponent } from './home/home.component';
+import { WeatherHourlyComponent } from './weather-hourly/weather-hourly.component';
 import { WeatherComponent } from './weather/weather.component';
 
 const routes: Routes = [ {
@@ -22,6 +23,11 @@ const routes: Routes = [ {
 {
   path: 'contacts',
 component:ContactsComponent
+
+},
+{
+  path: 'checkHourly',
+component:WeatherHourlyComponent
 
 },
 {

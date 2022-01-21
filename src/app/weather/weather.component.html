@@ -1,73 +1,123 @@
-<div style="margin-bottom: 100px; margin-left: 200px;">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div style="margin-bottom: 5px; margin-left: 5px">
+        <mat-form-field>
+          <mat-label>Weather</mat-label>
+          <input matInput #wea placeholder="Enter location" />
+        </mat-form-field>
+        <button mat-mini-fab (click)="onLocation(wea.value)">Go</button>
+      </div>
+      <mat-spinner
+        style="margin-left: 20px"
+        *ngIf="isLoading && !isCard"
+      ></mat-spinner>
+      <mat-card
+        style="margin-left: 5px"
+        class="example-card m1"
+        *ngIf="!isLoading && isCard"
+      >
+        <mat-card-title-group>
+          <mat-card-title>{{ WeatherData.location.name }}</mat-card-title>
+          <mat-card-subtitle>{{
+            WeatherData.location.country
+          }}</mat-card-subtitle>
+          <img
+            mat-card-md-image
+            src="{{ WeatherData.current.condition.icon }}"
+          />
+        </mat-card-title-group>
+        <mat-card-content>
+          <p>
+            <b> Weather - {{ WeatherData.current.condition.text }} </b>
+          </p>
+          <p>
+            <b> Local time- {{ WeatherData.location.localtime }} </b>
+          </p>
+          <p>
+            <b> Temprature(f) {{ WeatherData.current.temp_f }}* </b>
+          </p>
+          <p>
+            <b> Wind speed (kph)-{{ WeatherData.current.wind_kph }} </b>
+          </p>
+          <p>
+            <b> Humidity -{{ WeatherData.current.humidity }} </b>
+          </p>
 
-  <mat-form-field>
-    <mat-label>Weather</mat-label>
-    <input
-    matInput
-    #wea
-    placeholder="Enter location"
+          <p>
+            <b>
+              Max temp (f)
+              {{ WeatherData.forecast.forecastday[0].day.maxtemp_f }}*
+            </b>
+          </p>
+          <p>
+            <b>
+              Min temp (f)
+              {{ WeatherData.forecast.forecastday[0].day.mintemp_f }}*
+            </b>
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>
+            Sunrise-{{ WeatherData.forecast.forecastday[0].astro.sunrise }}
+          </button>
+          <button mat-button>
+            Sunset -{{ WeatherData.forecast.forecastday[0].astro.sunset }}
+          </button>
+          <button mat-raised-button color="warn" (click)="tocheckHourly(WeatherData.forecast.forecastday[0])">To check Hourly</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
 
-    />
+  <div   *ngIf="!isLoading && isCard" class="col-sm-12 col-sm-6 col-md-6 col-lg-6">
+    <p>For next 3 days</p>
 
-  </mat-form-field>
-  <button mat-mini-fab (click)="onLocation(wea.value)">
-Go
-  </button>
+    <mat-card
+    style="margin-left: 5px; margin-bottom:10px"
+    class="example-card m1"
+
+ *ngFor="let weat of loadedWeather" >
+    <mat-card-title-group>
+      <mat-card-title>{{ WeatherData.location.name }}</mat-card-title>
+      <mat-card-subtitle>{{
+        weat.date
+      }}</mat-card-subtitle>
+      <img
+        mat-card-md-image
+        src="{{ weat.day.condition.icon }}"
+      />
+    </mat-card-title-group>
+    <mat-card-content>
+      <p>
+        <b> Weather - {{ weat.day.condition.text }} </b>
+      </p>
+
+
+
+
+      <p>
+        <b>
+          Max temp (f)
+          {{ weat.day.maxtemp_f }}*
+        </b>
+      </p>
+      <p>
+        <b>
+          Min temp (f)
+          {{ weat.day.mintemp_f }}*
+        </b>
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>
+        Sunrise-{{ weat.astro.sunrise }}
+      </button>
+      <button mat-button>
+        Sunset -{{ weat.astro.sunset }}
+      </button>
+      <button mat-raised-button color="warn"  (click)="tocheckHourly(weat)">To check Hourly</button>
+    </mat-card-actions>
+  </mat-card>
+  </div>
 </div>
-<mat-spinner style="margin-left: 200px;" *ngIf="isLoading && !isCard"></mat-spinner>
-<mat-card style="margin-left: 200px;" class="example-card" *ngIf="!isLoading && isCard">
-  <mat-card-title-group>
-    <mat-card-title>{{WeatherData.location.name}}</mat-card-title>
-    <mat-card-subtitle>{{WeatherData.location.country}}</mat-card-subtitle>
-    <img mat-card-md-image src={{WeatherData.current.condition.icon}} >
-  </mat-card-title-group>
-  <mat-card-content>
-<p>
-  <b>
-   Weather - {{WeatherData.current.condition.text}}
-
-  </b>
-</p>
-<p>
-<b>
-  Local time- {{WeatherData.location.localtime}}
-
-</b>
-</p>
-<p>
-  <b>
-
-    Temprature(f) {{WeatherData.current.temp_f}}*
-  </b>
-</p>
-<p>
-  <b>
-    Wind speed (kph)-{{WeatherData.current.wind_kph}}
-
-  </b>
-</p>
-<p>
-  <b>
-    Humidity -{{WeatherData.current.humidity}}
-
-  </b>
-</p>
-
-<p><b>
-
-  Max temp (f) {{WeatherData.forecast.forecastday[0].day.maxtemp_f}}*
-</b>
-</p>
-<p>
-  <b>
-
-    Min temp (f) {{WeatherData.forecast.forecastday[0].day.mintemp_f}}*
-  </b>
-</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button> Sunrise-{{WeatherData.forecast.forecastday[0].astro.sunrise}}</button>
-    <button mat-button>Sunset -{{WeatherData.forecast.forecastday[0].astro.sunset}}</button>
-
-  </mat-card-actions>
-</mat-card>
+</div>

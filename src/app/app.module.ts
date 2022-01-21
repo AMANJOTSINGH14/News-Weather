@@ -27,6 +27,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HeaderComponent } from './header/header.component';
 import { LimitPipe } from './limit.pipe';
 import {MatChipsModule} from '@angular/material/chips';
+import { WeatherHourlyComponent } from './weather-hourly/weather-hourly.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import {MatChipsModule} from '@angular/material/chips';
     HomeComponent,
     ContactsComponent,
     HeaderComponent,
-    LimitPipe
+    LimitPipe,
+    WeatherHourlyComponent
 
   ],
   imports: [
