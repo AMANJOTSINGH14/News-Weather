@@ -10,12 +10,13 @@
       </div>
       <mat-spinner
         style="margin-left: 20px"
-        *ngIf="isLoading && !isCard"
+        *ngIf="isLoading && !isCard && errorMessage===null"
       ></mat-spinner>
+      <button mat-raised-button color="warn" *ngIf="!isLoading && !isCard || errorMessage!==null" >{{errorMessage}}</button>
       <mat-card
         style="margin-left: 5px"
         class="example-card m1"
-        *ngIf="!isLoading && isCard"
+        *ngIf="!isLoading && isCard || errorMessage===null"
       >
         <mat-card-title-group>
           <mat-card-title>{{ WeatherData.location.name }}</mat-card-title>
@@ -69,7 +70,7 @@
       </mat-card>
     </div>
 
-  <div   *ngIf="!isLoading && isCard" class="col-sm-12 col-sm-6 col-md-6 col-lg-6">
+  <div   *ngIf="!isLoading && isCard || errorMessage===null" class="col-sm-12 col-sm-6 col-md-6 col-lg-6">
 
     <p>
       <mat-toolbar>
@@ -96,10 +97,6 @@
       <p>
         <b> Weather - {{ weat.day.condition.text }} </b>
       </p>
-
-
-
-
       <p>
         <b>
           Max temp (f)

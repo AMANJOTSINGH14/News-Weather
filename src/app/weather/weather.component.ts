@@ -14,7 +14,7 @@ WeatherData:any
 isLoading=false
 loadedWeather:any
 isCard=false;
-
+errorMessage:any;
 constructor(private http:HttpClient,private weatherS:WeatherService,private router:Router) { }
 
   ngOnInit(): void {
@@ -32,17 +32,23 @@ constructor(private http:HttpClient,private weatherS:WeatherService,private rout
     }
 
     })
+    console.log(this.errorMessage)
   }
 onLocation(event:any){
-this.isLoading=true
+this.errorMessage=null;
+  this.isLoading=true
 this.isCard=false
   this.weatherS.getWeatherData(event).subscribe((data)=>{
-
+    this.isLoading=true
   this.WeatherData=data
 this.loadedWeather=this.WeatherData.forecast.forecastday.slice(1);
 console.log(this.loadedWeather)
   this.isLoading=false
   this.isCard=true
+},error=>{
+  this.errorMessage=error.error.error.message
+  this.isLoading=false
+console.log(this.errorMessage)
 })
 }
 tocheckHourly(i:any){
