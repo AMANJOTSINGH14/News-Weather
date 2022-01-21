@@ -70,7 +70,12 @@
     </div>
 
   <div   *ngIf="!isLoading && isCard" class="col-sm-12 col-sm-6 col-md-6 col-lg-6">
-    <p>For next 3 days</p>
+
+    <p>
+      <mat-toolbar>
+        <span>For next 2 Days</span>
+      </mat-toolbar>
+    </p>
 
     <mat-card
     style="margin-left: 5px; margin-bottom:10px"
